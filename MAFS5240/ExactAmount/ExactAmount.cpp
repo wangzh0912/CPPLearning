@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -27,7 +28,28 @@ int main() {
 
 	c10 = 0; c20 = 0; c50 = 0; c100 = 0; c500 = 0;
 
-	// TODO
+	// vector stores number of bills in pocket
+	vector<int> vecOfBillsHave({ n500Dollar, n100Dollar, n50Dollar, n20Dollar, n10Dollar });
+	// vector stores face value of bills
+	vector<int> faceValue({ 500, 100, 50, 20, 10 });
+	// vector of bills used in payment
+	vector<int> vecOfBillsUsed(5);
+
+	int residual = bill;
+	for (std::size_t i = 0; i < vecOfBillsHave.size(); ++i) {
+		int nBillNeed = residual / faceValue[i];				// number of bill need
+		vecOfBillsUsed[i] = min(nBillNeed, vecOfBillsHave[i]);  // number of bill available
+		residual = residual - faceValue[i] * vecOfBillsUsed[i]; // remaining bill
+	}
+
+	// unpack the result
+	if (residual == 0) {
+		c500 = vecOfBillsUsed[0];
+		c100 = vecOfBillsUsed[1];
+		c50 = vecOfBillsUsed[2];
+		c20 = vecOfBillsUsed[3];
+		c10 = vecOfBillsUsed[4];
+	};
 
 	cout << "Payment:" << endl;
 	cout << "Number of 10-Dollar bills: " << c10 << endl;
