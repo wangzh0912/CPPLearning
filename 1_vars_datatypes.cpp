@@ -55,6 +55,11 @@ int main() {
     // v.size()
     // v.push_back()
 
+    // use array to initialize vector
+    const size_t arr_size = 6;
+    int int_arr[arr_size] = {0, 1, 2, 3, 4, 5};
+    vector<int> ivec(int_arr, int_arr + arr_size);
+
     // 10. Iterator
     vector<int>::iterator iter;
     vector<int>::iterator iter_b = ivec.begin();
@@ -92,6 +97,9 @@ int main() {
     for (size_t ix=0; ix!=array_size; ++ix)
         ia2[ix] = ia1[ix];
     // defining: using const number as size
+
+    // multidimensioned array
+    int multi_arr[2][3];
 
 };
 
